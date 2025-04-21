@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Drift Boss online - Master the art of drifting in this addictive racing game. How far can you go?">
+    <meta name="keywords" content="Drift Boss, racing game, drifting game, online game, free game">
+    <title>Drift Boss - Master the Art of Drifting | kuangshan.space</title>
+    <link rel="canonical" href="https://www.kuangshan.space">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#007AFF',
+                            gray: '#8E8E93',
+                            black: '#000000',
+                            white: '#FFFFFF',
+                            red: '#FF3B30',
+                            green: '#34C759',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .game-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .game-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body class="bg-apple-white text-apple-black">
+    <header class="bg-apple-blue text-apple-white py-4 animate-fade-in">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold">Drift Boss</h1>
+                    <p class="text-lg mt-2">Master the art of drifting in this addictive racing game.</p>
+                </div>
+                <nav class="mt-4 md:mt-0">
+                    <ul class="flex space-x-6">
+                        <li><a href="#game" class="hover:underline">Play</a></li>
+                        <li><a href="#about" class="hover:underline">About</a></li>
+                        <li><a href="#tips" class="hover:underline">Tips</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section id="game" class="mb-12 animate-fade-in">
+            <div class="game-container shadow-lg rounded-lg overflow-hidden">
+                <div class="loading-indicator">Loading game...</div>
+                <iframe src="https://webglmath.github.io/drift-boss/" class="game-iframe" allowfullscreen allow="fullscreen; autoplay; focus" onload="this.previousElementSibling.style.display='none'"></iframe>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="#tips" class="btn-apple inline-block">Get Pro Tips</a>
+            </div>
+        </section>
+
+        <section id="about" class="mb-12 animate-fade-in">
+            <h2 class="text-2xl font-bold mb-4 text-apple-blue">About Drift Boss</h2>
+            <div class="bg-gray-50 p-6 rounded-lg shadow">
+                <p class="mb-4">Drift Boss is an exciting racing game where your goal is to drift your car as far as possible without falling off the track. The game's simple yet challenging mechanics make it addictive for players of all ages.</p>
+                <p class="mb-4">As you progress, the track becomes more challenging with sharper turns and unexpected obstacles. Your reflexes and timing skills will be put to the test as you aim to achieve the highest score possible.</p>
+                <p>The colorful graphics and smooth gameplay provide an immersive experience that keeps players coming back for more. Compare your high scores with friends and see who can become the ultimate Drift Boss!</p>
+            </div>
+        </section>
+
+        <section id="tips" class="mb-12 animate-fade-in">
+            <h2 class="text-2xl font-bold mb-4 text-apple-blue">Tips & Tricks</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
+                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Master Your Timing</h2>
+                    <p>Perfect your drifting by releasing at just the right moment. The key to success is timing your release to match the angle of the upcoming turn.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
+                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Build Momentum</h2>
+                    <p>The longer you hold before releasing, the farther your car will drift. However, be careful not to overdo it or you'll fly off the track!</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
+                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Stay Focused</h2>
+                    <p>The game requires concentration. Look ahead to anticipate upcoming turns and obstacles rather than focusing on your current position.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
+                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Practice Makes Perfect</h2>
+                    <p>Like any skill, drifting in this game improves with practice. Don't get discouraged by early failures - keep playing to develop your technique.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2023 kuangshan.space. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <p>Drift Boss is a trademark of its respective owner.</p>
+                    <p class="text-sm mt-2">This website is not affiliated with the game developers.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的页面加载脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Drift Boss website loaded successfully');
+        });
+    </script>
+</body>
+</html> 

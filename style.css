@@ -1,0 +1,86 @@
+/* 
+* Drift Boss - Custom CSS
+* Website: www.kuangshan.space
+*/
+
+/* 全局样式 */
+:root {
+    --apple-blue: #007AFF;
+    --apple-gray: #8E8E93;
+    --apple-black: #000000;
+    --apple-white: #FFFFFF;
+    --apple-red: #FF3B30;
+    --apple-green: #34C759;
+    --apple-gray-light: #F2F2F7;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* 游戏容器悬停效果 */
+.game-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* 自定义按钮样式 */
+.btn-apple {
+    background-color: var(--apple-blue);
+    color: var(--apple-white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-apple:hover {
+    background-color: #0069d9;
+    transform: scale(1.05);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .game-container {
+        padding-top: 75%; /* 调整移动端的游戏容器比例 */
+    }
+}
+
+/* 页面平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 游戏区域加载动画 */
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--apple-blue);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* 提升可访问性的焦点样式 */
+a:focus, button:focus {
+    outline: 2px solid var(--apple-blue);
+    outline-offset: 2px;
+}
+
+/* 卡片悬停效果 */
+.tip-card {
+    transition: all 0.3s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+} 
