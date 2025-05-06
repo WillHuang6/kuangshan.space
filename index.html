@@ -46,15 +46,40 @@
         }
     </script>
     <style type="text/css">
+        :root {
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+            --gradient-secondary: linear-gradient(135deg, #f43f5e 0%, #f97316 100%);
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f8fafc;
         }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
         .game-container {
             position: relative;
             overflow: hidden;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease;
         }
+
+        .game-container:hover {
+            transform: scale(1.02);
+        }
+
         .game-iframe {
             position: absolute;
             top: 0;
@@ -65,86 +90,200 @@
             height: 100%;
             border: none;
         }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .tip-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-apple {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-apple:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: #6366f1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        footer {
+            background: var(--gradient-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+        }
     </style>
 </head>
-<body class="bg-apple-white text-apple-black">
-    <header class="bg-apple-blue text-apple-white py-4 animate-fade-in">
+<body class="bg-gray-50">
+    <header class="py-8 text-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div>
-                    <h1 class="text-3xl md:text-4xl font-bold">Drift Boss</h1>
-                    <p class="text-lg mt-2">Master the art of drifting in this addictive racing game.</p>
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-float">Drift Boss</h1>
+                    <p class="text-xl md:text-2xl opacity-90">体验极致漂移乐趣</p>
                 </div>
-                <nav class="mt-4 md:mt-0">
-                    <ul class="flex space-x-6">
-                        <li><a href="#game" class="hover:underline">Play</a></li>
-                        <li><a href="#about" class="hover:underline">About</a></li>
-                        <li><a href="#tips" class="hover:underline">Tips</a></li>
+                <nav class="mt-6 md:mt-0">
+                    <ul class="flex space-x-8">
+                        <li><a href="#game" class="nav-link">开始游戏</a></li>
+                        <li><a href="#about" class="nav-link">关于游戏</a></li>
+                        <li><a href="#tips" class="nav-link">游戏技巧</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <section id="game" class="mb-12 animate-fade-in">
-            <div class="game-container shadow-lg rounded-lg overflow-hidden">
-                <div class="loading-indicator">Loading game...</div>
+    <main class="container mx-auto px-4 py-12">
+        <section id="game" class="mb-16">
+            <div class="game-container">
+                <div class="loading-indicator">加载游戏中...</div>
                 <iframe src="https://webglmath.github.io/drift-boss/" class="game-iframe" allowfullscreen allow="fullscreen; autoplay; focus" onload="this.previousElementSibling.style.display='none'"></iframe>
             </div>
-            <div class="mt-4 text-center">
-                <a href="#tips" class="btn-apple inline-block">Get Pro Tips</a>
+            <div class="mt-8 text-center">
+                <a href="#tips" class="btn-apple">查看游戏技巧</a>
             </div>
         </section>
 
-        <section id="about" class="mb-12 animate-fade-in">
-            <h2 class="text-2xl font-bold mb-4 text-apple-blue">About Drift Boss</h2>
-            <div class="bg-gray-50 p-6 rounded-lg shadow">
-                <p class="mb-4">Drift Boss is an exciting racing game where your goal is to drift your car as far as possible without falling off the track. The game's simple yet challenging mechanics make it addictive for players of all ages.</p>
-                <p class="mb-4">As you progress, the track becomes more challenging with sharper turns and unexpected obstacles. Your reflexes and timing skills will be put to the test as you aim to achieve the highest score possible.</p>
-                <p>The colorful graphics and smooth gameplay provide an immersive experience that keeps players coming back for more. Compare your high scores with friends and see who can become the ultimate Drift Boss!</p>
+        <section id="about" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">关于 Drift Boss</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+                <p class="text-lg mb-4 leading-relaxed">Drift Boss 是一款令人兴奋的漂移赛车游戏，您的目标是在不断变化的赛道上尽可能地漂移前进。游戏简单易上手但富有挑战性，适合所有年龄段的玩家。</p>
+                <p class="text-lg mb-4 leading-relaxed">随着游戏的进行，赛道会变得更具挑战性，出现更急的转弯和意想不到的障碍。这将考验您的反应能力和时机掌控。</p>
+                <p class="text-lg leading-relaxed">炫丽的画面和流畅的游戏体验会让您欲罢不能。快来挑战高分，看看谁能成为终极漂移王者！</p>
             </div>
         </section>
 
-        <section id="tips" class="mb-12 animate-fade-in">
-            <h2 class="text-2xl font-bold mb-4 text-apple-blue">Tips & Tricks</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
-                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Master Your Timing</h2>
-                    <p>Perfect your drifting by releasing at just the right moment. The key to success is timing your release to match the angle of the upcoming turn.</p>
+        <section id="tips" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">游戏技巧</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="tip-card bg-white p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">掌握时机</h3>
+                    <p class="text-lg leading-relaxed">完美的漂移需要在恰当的时机释放。关键是要根据即将到来的转弯角度来把握释放的时机。</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
-                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Build Momentum</h2>
-                    <p>The longer you hold before releasing, the farther your car will drift. However, be careful not to overdo it or you'll fly off the track!</p>
+                <div class="tip-card bg-white p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">积累动力</h3>
+                    <p class="text-lg leading-relaxed">按住的时间越长，漂移的距离就越远。但要注意不要过度，否则会冲出赛道！</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
-                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Stay Focused</h2>
-                    <p>The game requires concentration. Look ahead to anticipate upcoming turns and obstacles rather than focusing on your current position.</p>
+                <div class="tip-card bg-white p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">保持专注</h3>
+                    <p class="text-lg leading-relaxed">游戏需要高度集中。要往前看以预判即将到来的转弯和障碍，而不是只关注当前位置。</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow tip-card">
-                    <h2 class="text-xl font-semibold mb-2 text-apple-green">Practice Makes Perfect</h2>
-                    <p>Like any skill, drifting in this game improves with practice. Don't get discouraged by early failures - keep playing to develop your technique.</p>
+                <div class="tip-card bg-white p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">熟能生巧</h3>
+                    <p class="text-lg leading-relaxed">像任何技能一样，这个游戏中的漂移也需要练习才能提高。不要因为早期的失败而气馁，坚持练习就能掌握技巧。</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-4">
+    <footer class="text-white py-8">
+        <div class="container mx-auto px-4 relative">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2023 kuangshan.space. All rights reserved.</p>
-                <div class="mt-4 md:mt-0">
-                    <p>Drift Boss is a trademark of its respective owner.</p>
-                    <p class="text-sm mt-2">This website is not affiliated with the game developers.</p>
+                <p class="text-lg">&copy; 2024 kuangshan.space</p>
+                <div class="mt-4 md:mt-0 text-center md:text-right">
+                    <p class="mb-2">Drift Boss 版权归原作者所有</p>
+                    <p class="opacity-75">本网站与游戏开发者无关</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // 简单的页面加载脚本
+        // 添加页面滚动动画
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 添加页面加载动画
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Drift Boss website loaded successfully');
+            document.body.classList.add('loaded');
         });
     </script>
 </body>
