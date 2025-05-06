@@ -26,6 +26,8 @@
     <title>Drift Boss - Master the Art of Drifting | Play Online</title>
     <link rel="canonical" href="https://kuangshan.space">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/language.js"></script>
     <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
@@ -194,6 +196,24 @@
             bottom: 0;
             background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
         }
+
+        .lang-switch {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+        
+        .lang-switch:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .lang-switch.active {
+            background: white;
+            color: var(--gradient-primary);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -202,14 +222,20 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-center md:text-left">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-float">Drift Boss</h1>
-                    <p class="text-xl md:text-2xl opacity-90">Master the Art of Drifting</p>
+                    <p class="text-xl md:text-2xl opacity-90" data-i18n="hero.subtitle">Master the Art of Drifting</p>
                 </div>
                 <nav class="mt-6 md:mt-0">
-                    <ul class="flex space-x-8">
-                        <li><a href="#game" class="nav-link">Play Now</a></li>
-                        <li><a href="#about" class="nav-link">About</a></li>
-                        <li><a href="#tips" class="nav-link">Pro Tips</a></li>
-                    </ul>
+                    <div class="flex items-center">
+                        <ul class="flex space-x-8">
+                            <li><a href="#game" class="nav-link" data-i18n="nav.playNow">Play Now</a></li>
+                            <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+                            <li><a href="#tips" class="nav-link" data-i18n="nav.proTips">Pro Tips</a></li>
+                        </ul>
+                        <div class="flex ml-8">
+                            <button class="lang-switch" data-lang="en">EN</button>
+                            <button class="lang-switch" data-lang="zh">中文</button>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -218,41 +244,41 @@
     <main class="container mx-auto px-4 py-12">
         <section id="game" class="mb-16">
             <div class="game-container">
-                <div class="loading-indicator">Loading game...</div>
+                <div class="loading-indicator" data-i18n="game.loading">Loading game...</div>
                 <iframe src="https://webglmath.github.io/drift-boss/" class="game-iframe" allowfullscreen allow="fullscreen; autoplay; focus" onload="this.previousElementSibling.style.display='none'"></iframe>
             </div>
             <div class="mt-8 text-center">
-                <a href="#tips" class="btn-apple">Get Pro Tips</a>
+                <a href="#tips" class="btn-apple" data-i18n="game.getProTips">Get Pro Tips</a>
             </div>
         </section>
 
         <section id="about" class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">About Drift Boss</h2>
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text" data-i18n="about.title">About Drift Boss</h2>
             <div class="bg-white p-8 rounded-2xl shadow-lg">
-                <p class="text-lg mb-4 leading-relaxed">Drift Boss is an exhilarating racing game where your goal is to drift your car as far as possible without falling off the track. With its simple yet challenging mechanics, it's perfect for players of all ages.</p>
-                <p class="text-lg mb-4 leading-relaxed">As you progress, the track becomes increasingly challenging with sharper turns and unexpected obstacles. Test your reflexes and timing skills as you aim for the highest score possible.</p>
-                <p class="text-lg leading-relaxed">With stunning graphics and smooth gameplay, you'll find yourself coming back for more. Challenge your friends and see who can become the ultimate Drift Boss!</p>
+                <p class="text-lg mb-4 leading-relaxed" data-i18n="about.p1">Drift Boss is an exhilarating racing game where your goal is to drift your car as far as possible without falling off the track. With its simple yet challenging mechanics, it's perfect for players of all ages.</p>
+                <p class="text-lg mb-4 leading-relaxed" data-i18n="about.p2">As you progress, the track becomes increasingly challenging with sharper turns and unexpected obstacles. Test your reflexes and timing skills as you aim for the highest score possible.</p>
+                <p class="text-lg leading-relaxed" data-i18n="about.p3">With stunning graphics and smooth gameplay, you'll find yourself coming back for more. Challenge your friends and see who can become the ultimate Drift Boss!</p>
             </div>
         </section>
 
         <section id="tips" class="mb-16">
-            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Pro Tips & Tricks</h2>
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text" data-i18n="tips.title">Pro Tips & Tricks</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="tip-card bg-white p-6 rounded-2xl">
-                    <h3 class="text-xl font-semibold mb-4 gradient-text">Perfect Timing</h3>
-                    <p class="text-lg leading-relaxed">Master your drifting by releasing at just the right moment. Success comes from timing your release to match the angle of the upcoming turn.</p>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text" data-i18n="tips.timing.title">Perfect Timing</h3>
+                    <p class="text-lg leading-relaxed" data-i18n="tips.timing.content">Master your drifting by releasing at just the right moment. Success comes from timing your release to match the angle of the upcoming turn.</p>
                 </div>
                 <div class="tip-card bg-white p-6 rounded-2xl">
-                    <h3 class="text-xl font-semibold mb-4 gradient-text">Build Momentum</h3>
-                    <p class="text-lg leading-relaxed">The longer you hold before releasing, the farther your car will drift. But be careful not to overdo it, or you'll fly off the track!</p>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text" data-i18n="tips.momentum.title">Build Momentum</h3>
+                    <p class="text-lg leading-relaxed" data-i18n="tips.momentum.content">The longer you hold before releasing, the farther your car will drift. But be careful not to overdo it, or you'll fly off the track!</p>
                 </div>
                 <div class="tip-card bg-white p-6 rounded-2xl">
-                    <h3 class="text-xl font-semibold mb-4 gradient-text">Stay Focused</h3>
-                    <p class="text-lg leading-relaxed">Keep your concentration high. Look ahead to anticipate upcoming turns and obstacles rather than focusing solely on your current position.</p>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text" data-i18n="tips.focus.title">Stay Focused</h3>
+                    <p class="text-lg leading-relaxed" data-i18n="tips.focus.content">Keep your concentration high. Look ahead to anticipate upcoming turns and obstacles rather than focusing solely on your current position.</p>
                 </div>
                 <div class="tip-card bg-white p-6 rounded-2xl">
-                    <h3 class="text-xl font-semibold mb-4 gradient-text">Practice Makes Perfect</h3>
-                    <p class="text-lg leading-relaxed">Like any skill, drifting in this game improves with practice. Don't get discouraged by early failures - keep playing to develop your technique.</p>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text" data-i18n="tips.practice.title">Practice Makes Perfect</h3>
+                    <p class="text-lg leading-relaxed" data-i18n="tips.practice.content">Like any skill, drifting in this game improves with practice. Don't get discouraged by early failures - keep playing to develop your technique.</p>
                 </div>
             </div>
         </section>
@@ -263,8 +289,8 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <p class="text-lg">&copy; 2024 kuangshan.space</p>
                 <div class="mt-4 md:mt-0 text-center md:text-right">
-                    <p class="mb-2">Drift Boss is a trademark of its respective owner</p>
-                    <p class="opacity-75">This website is not affiliated with the game developers</p>
+                    <p class="mb-2" data-i18n="footer.trademark">Drift Boss is a trademark of its respective owner</p>
+                    <p class="opacity-75" data-i18n="footer.disclaimer">This website is not affiliated with the game developers</p>
                 </div>
             </div>
         </div>
